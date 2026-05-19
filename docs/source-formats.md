@@ -177,13 +177,13 @@ instead of `subclass:` in the output Topaz script.
 
 ```bash
 # FileTree dependency
-Geode add seaside --version "^3.5" \
+geode add seaside --version "^3.5" \
     --git "https://github.com/SeasideSt/Seaside" \
     --filetree "repository/Seaside-Core.package" \
     --filetree "repository/Seaside-Component.package"
 
 # Tonel dependency
-Geode add magritte --version "^3.7" \
+geode add magritte --version "^3.7" \
     --git "https://github.com/magritte-metamodel/Magritte" \
     --tonel "source/Magritte-Model"
 ```

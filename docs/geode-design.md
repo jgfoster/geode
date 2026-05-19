@@ -203,14 +203,14 @@ A Python CLI (using Click) with subcommands modeled on Cargo, installable via
 `pip install gemstone-geode`:
 
 ```
-Geode init [name]       Create a new project with a skeleton gemstone.toml
-Geode add <package>     Add a dependency (updates gemstone.toml)
-Geode fetch             Resolve and download all dependencies (updates gemstone.lock)
-Geode install <stone>   Generate and run topaz script to load into a stone
-Geode test <stone>      Load including dev-dependencies and run tests
-Geode update [package]  Update dependencies within declared constraints
-Geode tree              Show resolved dependency tree
-Geode publish           Publish this package to a registry
+geode init [name]       Create a new project with a skeleton gemstone.toml
+geode add <package>     Add a dependency (updates gemstone.toml)
+geode fetch             Resolve and download all dependencies (updates gemstone.lock)
+geode install <stone>   Generate and run topaz script to load into a stone
+geode test <stone>      Load including dev-dependencies and run tests
+geode update [package]  Update dependencies within declared constraints
+geode tree              Show resolved dependency tree
+geode publish           Publish this package to a registry
 ```
 
 ---
@@ -241,7 +241,7 @@ version down.
 `geode install <stone>` generates and runs a Topaz script. Example:
 
 ```bash
-Geode install my_stone
+geode install my_stone
 ```
 
 Generated Topaz script:

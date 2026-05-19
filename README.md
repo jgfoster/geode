@@ -9,6 +9,8 @@ the GemStone image is a build artifact. This eliminates the round-trip
 problem (image ↔ files) and lets you use standard Git workflows — branches,
 pull requests, diffs — without any image-side tooling.
 
+Note: A [geode](https://www.merriam-webster.com/dictionary/geode) is a stone that contains many smaller crystals inside. It perfectly mirrors the concept of a container or "crate.”
+
 ## Installation
 
 Requires Python 3.9+.
@@ -29,23 +31,23 @@ pip install -e .
 
 ```bash
 # Create a new project
-Geode init my-app
+geode init my-app
 cd my-app
 
 # Add a dependency
-Geode add seaside --version "^3.5" --git https://github.com/SeasideSt/Seaside
+geode add seaside --version "^3.5" --git https://github.com/SeasideSt/Seaside
 
 # Resolve and download dependencies
-Geode fetch
+geode fetch
 
 # See what was resolved
-Geode tree
+geode tree
 
 # Preview the Topaz load script
-Geode install --dry-run my_stone
+geode install --dry-run my_stone
 
 # Load into a stone
-Geode install my_stone
+geode install my_stone
 ```
 
 ## The Manifest: `gemstone.toml`
@@ -168,7 +170,7 @@ Create a new project with a skeleton `gemstone.toml`, `src/`, and `tests/`
 directories. If `name` is given, creates a subdirectory.
 
 ```bash
-Geode init my-project
+geode init my-project
 ```
 
 ### `geode add <package>`
@@ -176,26 +178,26 @@ Geode init my-project
 Add a dependency to `gemstone.toml`.
 
 ```bash
-Geode add seaside --version "^3.5" --git https://github.com/SeasideSt/Seaside
-Geode add sunit --version "^1.0" --git https://example.com/sunit --dev
+geode add seaside --version "^3.5" --git https://github.com/SeasideSt/Seaside
+geode add sunit --version "^1.0" --git https://example.com/sunit --dev
 ```
 
 For legacy packages without a `gemstone.toml`, specify load overrides:
 
 ```bash
-Geode add seaside --version "^3.5" --git https://github.com/SeasideSt/Seaside \
+geode add seaside --version "^3.5" --git https://github.com/SeasideSt/Seaside \
     --filetree repository/Seaside-Core.package \
     --filetree repository/Seaside-Component.package
-Geode add magritte --version "^3.7" --git https://github.com/magritte-metamodel/Magritte \
+geode add magritte --version "^3.7" --git https://github.com/magritte-metamodel/Magritte \
     --tonel source/Magritte-Model
-Geode add mylib --version "^1.0" --git https://example.com/mylib \
+geode add mylib --version "^1.0" --git https://example.com/mylib \
     --files src/MyLib.gs
 ```
 
 If the package is published to the registry, `--git` can be omitted:
 
 ```bash
-Geode add seaside --version "^3.5"
+geode add seaside --version "^3.5"
 ```
 
 ### `geode fetch`
@@ -204,7 +206,7 @@ Resolve all dependencies and download them. Updates `gemstone.lock` and
 populates `.geode/cache/` and `.geode/deps/`.
 
 ```bash
-Geode fetch
+geode fetch
 ```
 
 ### `geode install <stone>`
@@ -213,11 +215,11 @@ Generate a Topaz script and run it to load all code into the named stone.
 Dependencies are loaded in topological order (dependencies before dependents).
 
 ```bash
-Geode install my_stone
-Geode install my_stone --user SystemUser --password secret
-Geode install my_stone --gs-version 3.7.0    # enables conditional loading
-Geode install my_stone --dry-run              # print script, don't run it
-Geode install my_stone --tfile                # use Topaz TFILE for Tonel
+geode install my_stone
+geode install my_stone --user SystemUser --password secret
+geode install my_stone --gs-version 3.7.0    # enables conditional loading
+geode install my_stone --dry-run              # print script, don't run it
+geode install my_stone --tfile                # use Topaz TFILE for Tonel
 ```
 
 Pass `--tfile` to load Tonel `.class.st` files directly via Topaz `TFILE`
@@ -230,8 +232,8 @@ falls back to transpilation when it detects any.
 Like `install`, but also loads dev-dependencies and test files.
 
 ```bash
-Geode test my_stone
-Geode test my_stone --dry-run
+geode test my_stone
+geode test my_stone --dry-run
 ```
 
 ### `geode update [package]`
@@ -240,8 +242,8 @@ Re-resolve dependencies within the constraints declared in `gemstone.toml`.
 Optionally update only a single package.
 
 ```bash
-Geode update           # update all
-Geode update seaside   # update only seaside
+geode update           # update all
+geode update seaside   # update only seaside
 ```
 
 ### `geode tree`
@@ -249,7 +251,7 @@ Geode update seaside   # update only seaside
 Display the resolved dependency tree.
 
 ```bash
-Geode tree
+geode tree
 ```
 
 ```
@@ -269,8 +271,8 @@ reads chunk-format Smalltalk natively, so no chunk-level parsing is
 performed.
 
 ```bash
-Geode migrate-mcz path/to/Zinc-HTTP-sven.42.mcz
-Geode migrate-mcz path/to/pkg.mcz --out ./zinc-http
+geode migrate-mcz path/to/Zinc-HTTP-sven.42.mcz
+geode migrate-mcz path/to/pkg.mcz --out ./zinc-http
 ```
 
 Review the generated `gemstone.toml` and source file before use.
@@ -282,7 +284,7 @@ Publish the current package to the registry by opening a pull request
 to the registry index repository. Requires the `gh` CLI.
 
 ```bash
-Geode publish
+geode publish
 ```
 
 ## Tonel Support
